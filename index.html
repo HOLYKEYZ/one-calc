@@ -1,39 +1,110 @@
 <!DOCTYPE html>
-<html>   
+<html lang="en">
 <head>
-    <meta charset="utf-8"
-    <meta name="viewport" content="width=, initial-scale=1">
-    <link rel="stylesheeet" type="text/css" href="style.css">
-    <title>calculator project</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+      margin: 0;
+    }
+    .calculator {
+      width: 300px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .display {
+      width: 100%;
+      height: 50px;
+      margin-bottom: 10px;
+      font-size: 24px;
+      text-align: right;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .button {
+      padding: 20px;
+      font-size: 18px;
+      text-align: center;
+      cursor: pointer;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+    }
+    .button:hover {
+      background: #0056b3;
+    }
+    .button.clear {
+      background: #ff4d4d;
+    }
+  </style>
 </head>
 <body>
-    <script src="C:\Users\HP\OneDrive\Documentos\Custom Office Templates\.vscode\calculator project"></script>
-    <div class="calc">
-        <input type="text" id="ans">
-        <div class="btn">
-            <input type="button" value='c' onlick="clear()">
-            <input type="button" value='%' onclick="solve('%')">
-            <input type="button"onclick="("history.back()">&#8592;)">
-            <input type="button" value='/' onclick="solve('/')">
-            <br>
-            <input type="button" value='7' onclick="solve('7')">
-            <input type="button" value='8' onclick="solve('8')">
-            <input type="button" value='9' onclick="solve('9')">
-            <input type="button" value='*' onclick="solve('*')">
-            <br>
-            <input type="button" value='4' onclick="solve('4')">
-            <input type="button" value='5' onclick="solve('5')">
-            <input type="button" value='6' onclick="solve('6')">
-            <input type="button" value='-' onclick="solve('-')">
-            <br>
-            <input type="button" value='1' onclick="solve('1')">
-            <input type="button" value='2' onclick="solve('2')">
-            <input type="button" value='3' onclick="solve('3')">
-            <input type="button" value='+' onclick="solve('+')">
-            <br>
-            <input type="button" value='00' onclick="solve('00')">
-            <input type="button" value='0' onclick="solve('0')">
-            <input type="button" value='.' onclick="solve('.')">
-            <input type="button" value='=' onclick="solve('')">
-        </body>
-        </html>
+  <div class="calculator">
+    <!-- Display -->
+    <input type="text" id="display" class="display" disabled />
+
+    <!-- Buttons -->
+    <div class="buttons">
+      <button class="button" onclick="press('1')">1</button>
+      <button class="button" onclick="press('2')">2</button>
+      <button class="button" onclick="press('3')">3</button>
+      <button class="button" onclick="press('+')">+</button>
+
+      <button class="button" onclick="press('4')">4</button>
+      <button class="button" onclick="press('5')">5</button>
+      <button class="button" onclick="press('6')">6</button>
+      <button class="button" onclick="press('-')">-</button>
+
+      <button class="button" onclick="press('7')">7</button>
+      <button class="button" onclick="press('8')">8</button>
+      <button class="button" onclick="press('9')">9</button>
+      <button class="button" onclick="press('*')">*</button>
+
+      <button class="button clear" onclick="clearDisplay()">C</button>
+      <button class="button" onclick="press('0')">0</button>
+      <button class="button" onclick="calculate()">=</button>
+      <button class="button" onclick="press('/')">/</button>
+    </div>
+  </div>
+
+  <script>
+    // Function to handle button press
+    function press(value) {
+      const display = document.getElementById("display");
+      display.value += value;
+    }
+
+    // Function to clear the display
+    function clearDisplay() {
+      const display = document.getElementById("display");
+      display.value = "";
+    }
+
+    // Function to calculate the result
+    function calculate() {
+      const display = document.getElementById("display");
+      try {
+        display.value = eval(display.value); // Evaluate the expression
+      } catch {
+        display.value = "Error"; // Handle invalid expressions
+      }
+    }
+  </script>
+</body>
+</html>
